@@ -1,26 +1,32 @@
-#!/usr/bin/env python3
-"""
-Lockboxes function
-"""
+#!/usr/bin/python3
+"""Locked boxes module"""
 
 
 def canUnlockAll(boxes):
+    """Determines if all the boxes can be opened or not
+    Returns:
+        True: if all boxes can be opened
+        False: otherwise
     """
-    Determines whether all locked boxes can be opened with the keys
-    available.
-    """
-    if not isinstance(boxes, list) or len(boxes) == 0:
-        return False
+    length = len(boxes)
+    keys = set()
+    opened_boxes = []
+    i = 0
 
-    num_boxes = len(boxes)
-
-    for key in range(1, num_boxes):
-        box_checked = False
-        for idx in range(num_boxes):
-            if key in boxes[idx] and key != idx:
-                box_checked = True
+    while i < length:
+        oldi = i
+        opened_boxes.append(i)
+        keys.update(boxes[i])
+        for key in keys:
+            if key != 0 and key < length and key not in opened_boxes:
+                i = key
                 break
-        if not box_checked:
-            return False
+        if oldi != i:
+            continue
+        else:
+            break
 
+    for i in range(length):
+        if i not in opened_boxes and i != 0:
+            return False
     return True
