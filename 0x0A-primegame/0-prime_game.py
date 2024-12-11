@@ -1,4 +1,3 @@
-
 #!/usr/bin/python3
 """Prime Game"""
 
@@ -43,4 +42,3 @@ def isWinner(x, nums):
         return "Ben"
     else:
         return None
-
